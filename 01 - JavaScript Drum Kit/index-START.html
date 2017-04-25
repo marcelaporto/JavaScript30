@@ -66,40 +66,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function addEventList(arrayOfKeys) {
   document.addEventListener('keydown', function(e) {
       for (var i = 0; i < arrayOfKeys.length; i ++) {
-      var type = arrayOfKeys[i].getAttribute("data-key")
+      var type = arrayOfKeys[i].getAttribute("data-key");
       if(type == e.keyCode){
-        findAudio(type).play()
+        findAudio(type).currentTime = 0;;
+        findAudio(type).play();
         arrayOfKeys[i].classList.add('playing');
-        console.log("arrayOfKeys",arrayOfKeys[i])
       };
     };
   });
   document.addEventListener('keyup', function(e) {
     for (var i = 0; i < arrayOfKeys.length; i ++) {
-      var type = arrayOfKeys[i].getAttribute("data-key")
+      var type = arrayOfKeys[i].getAttribute("data-key");
       if(type == e.keyCode){
         arrayOfKeys[i].classList.remove('playing');
-        console.log("arrayOfKeys",arrayOfKeys[i])
       };
     };
   });
 };
 
-
-
-
 function findAudio(keyCode) {
   var arrayOfAudios = document.getElementsByTagName("audio")
   for (var i = 0; i < arrayOfAudios.length; i ++) {
-    var clicked = arrayOfAudios[i].getAttribute("data-key")
+    var clicked = arrayOfAudios[i].getAttribute("data-key");
     if(clicked == keyCode){
-      return arrayOfAudios[i]
+      return arrayOfAudios[i];
     };
   };
-}
-
-function changeBackground(keyCode) {
-
 }
 
 </script>
