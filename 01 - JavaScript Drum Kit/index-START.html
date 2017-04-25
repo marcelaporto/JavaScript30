@@ -64,19 +64,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function addEventList(arrayOfKeys) {
-  document.addEventListener('keyup', function(e) {
-    console.log(e)
-    console.log(e.keyCode)
-    for (var i = 0; i < arrayOfKeys.length; i ++) {
+  document.addEventListener('keydown', function(e) {
+      for (var i = 0; i < arrayOfKeys.length; i ++) {
       var type = arrayOfKeys[i].getAttribute("data-key")
       if(type == e.keyCode){
         findAudio(type).play()
-        arrayOfKeys[i].classList.add('class');
-        arrayOfKeys[i].classList.remove('class');
+        arrayOfKeys[i].classList.add('playing');
+        console.log("arrayOfKeys",arrayOfKeys[i])
+      };
+    };
+  });
+  document.addEventListener('keyup', function(e) {
+    for (var i = 0; i < arrayOfKeys.length; i ++) {
+      var type = arrayOfKeys[i].getAttribute("data-key")
+      if(type == e.keyCode){
+        arrayOfKeys[i].classList.remove('playing');
+        console.log("arrayOfKeys",arrayOfKeys[i])
       };
     };
   });
 };
+
+
+
 
 function findAudio(keyCode) {
   var arrayOfAudios = document.getElementsByTagName("audio")
